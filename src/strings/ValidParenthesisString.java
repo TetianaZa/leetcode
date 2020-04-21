@@ -13,47 +13,15 @@ import java.util.LinkedList;
 public class ValidParenthesisString {
 
     public static boolean checkValidString(String s) {
-        boolean isValid = true;
-        LinkedList<Character> stack = new LinkedList<>();
-        for (char ch : s.toCharArray()) {
-            if (ch == ')') {
-                if (stack.size() == 0) return false;
-                Iterator<Character> it = stack.descendingIterator();
-                boolean hasStar = false;
-                while (it.hasNext()) {
-                    Character charac = it.next();
-                    if (charac == '(') {
-                        it.remove();
-                        hasStar = false;
-                        break;
-                    } else if (charac == '*') {
-                        hasStar = true;
-                    }
-                }
-                if (hasStar) {
-                    stack.removeLast();
-                }
-            } else {
-                stack.addLast(ch);
-            }
+        int lo = 0, hi = 0;
+        for (char c: s.toCharArray()) {
+            lo += c == '(' ? 1 : -1;
+            hi += c != ')' ? 1 : -1;
+            if (hi < 0) break;
+            lo = Math.max(lo, 0);
         }
+        return lo == 0;
 
-        Iterator<Character> it = stack.descendingIterator();
-        int amountOfStar = 0;
-        while (it.hasNext()) {
-            Character charac = it.next();
-            if (charac == '(' && amountOfStar > 0) {
-                it.remove();
-                amountOfStar--;
-            } else if (charac == '*') {
-                amountOfStar++;
-            } else if (charac == '(' && amountOfStar == 0) {
-                return false;
-            }
-        }
-
-
-        return isValid;
     }
 
     //)((**)))))(()())()
@@ -64,3 +32,14 @@ public class ValidParenthesisString {
         System.out.println(checkValidString(strToCheck));
     }
 }
+
+// public boolean checkValidString(String s) {
+//       int lo = 0, hi = 0;
+//       for (char c: s.toCharArray()) {
+//           lo += c == '(' ? 1 : -1;
+//           hi += c != ')' ? 1 : -1;
+//           if (hi < 0) break;
+//           lo = Math.max(lo, 0);
+//       }
+//       return lo == 0;
+//    }
