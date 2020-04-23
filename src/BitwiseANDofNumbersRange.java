@@ -9,6 +9,11 @@ import java.util.LinkedList;
 //
 //Input: [0,1]
 //Output: 0
+
+
+//a << 1; // беззнаковый сдвиг влево, эквивалентно умножению на 2
+//        a >> 1; // сдвиг вправо с учётом знака (эквивалентно делению на 2)
+//        a >>> 1; // сдвиг вправо без учёта знака (эквивалентно беззнаковому делению на 2)
 public class BitwiseANDofNumbersRange {
 
     public static int rangeBitwiseAnd(int m, int n) {
