@@ -27,6 +27,6 @@ public class BitwiseANDofNumbersRange {
     }
 
     public static void main(String[] args) {
-        System.out.println(rangeBitwiseAnd(5,40));
+        System.out.println(rangeBitwiseAnd(40,80));
     }
 }

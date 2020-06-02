@@ -1,0 +1,19 @@
+public class FirstBadVersion {
+
+    public int firstBadVersion(int n) {
+        int start = 1;
+        int end = n;
+        int middle;
+        while(start <= end){
+            middle = ((end - start)>>1) + start;
+            if (isBadVersion(middle)) end = middle - 1;
+            else start = middle + 1;
+        }
+        return end + 1;
+    }
+
+
+    static boolean  isBadVersion(int version){
+        return true;
+    }
+}
